@@ -12,6 +12,8 @@ services:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 5s
@@ -24,6 +26,8 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    networks:
+      - app-network
     depends_on:
       db:
         condition: service_healthy
@@ -34,8 +38,14 @@ services:
     restart: always
     ports:
       - "4200:80"
+    networks:
+      - app-network
     depends_on:
       - backend
 
 volumes:
   mysql_data:
+
+networks:
+  app-network:
+    driver: bridge
