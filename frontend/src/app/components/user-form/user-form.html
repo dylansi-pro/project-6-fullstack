@@ -1,27 +1,62 @@
 <div class="container mt-4">
   <h2>{{ isEditMode ? 'Edit User' : 'Add User' }}</h2>
 
-  <form (ngSubmit)="saveUser()">
+  <form (ngSubmit)="saveUser()" #userForm="ngForm">
+    <!-- First Name -->
     <div class="mb-3">
-      <label class="form-label">First Name</label>
-      <input type="text" class="form-control" [(ngModel)]="user.firstName" name="firstName" required>
+      <label class="form-label">First Name *</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.firstName"
+        name="firstName"
+        #firstName="ngModel"
+        required
+        pattern=".*\S+.*"
+        [ngClass]="{'is-invalid': firstName.invalid && (firstName.dirty || firstName.touched)}">
+      <div class="invalid-feedback">
+        First name is required and cannot be empty spaces.
+      </div>
     </div>
 
+    <!-- Last Name -->
     <div class="mb-3">
-      <label class="form-label">Last Name</label>
-      <input type="text" class="form-control" [(ngModel)]="user.lastName" name="lastName" required>
+      <label class="form-label">Last Name *</label>
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+        #lastName="ngModel"
+        required
+        pattern=".*\S+.*"
+        [ngClass]="{'is-invalid': lastName.invalid && (lastName.dirty || lastName.touched)}">
+      <div class="invalid-feedback">
+        Last name is required and cannot be empty spaces.
+      </div>
     </div>
 
+    <!-- User Type -->
     <div class="mb-3">
-      <label class="form-label">User Type</label>
-      <select class="form-select" [(ngModel)]="user.userType" name="userType" required>
+      <label class="form-label">User Type *</label>
+      <select
+        class="form-select"
+        [(ngModel)]="user.userType"
+        name="userType"
+        #userType="ngModel"
+        required
+        [ngClass]="{'is-invalid': userType.invalid && (userType.dirty || userType.touched)}">
+        <option [ngValue]="null" disabled>Select a user type</option>
         @for (type of userTypes; track type.id) {
           <option [ngValue]="type">{{ type.type }}</option>
         }
       </select>
+      <div class="invalid-feedback">
+        Please select a user type.
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-success me-2">Save</button>
+    <button type="submit" class="btn btn-success me-2" [disabled]="userForm.invalid">Save</button>
     <a routerLink="/users" class="btn btn-secondary">Cancel</a>
   </form>
 </div>

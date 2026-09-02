@@ -44,6 +44,12 @@ export class UserFormComponent implements OnInit {
   }
 
   saveUser() {
+    this.user.firstName = this.user.firstName.trim();
+    this.user.lastName = this.user.lastName.trim();
+    if (!this.user.firstName || !this.user.lastName || !this.user.userType) {
+      return;
+    }
+
     if (!this.user.id || this.user.id === 0) {
       this.user.id = undefined;
     }
