@@ -6,16 +6,44 @@
   <thead class="table-dark">
   <tr>
     <th (click)="sort('id')" style="cursor: pointer;">
-      ID <span>{{ sortColumn === 'id' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+      ID
+      <span class="ms-1">
+        @if (sortColumn === 'id') {
+          {{ sortDirection === 'asc' ? '▲' : '▼' }}
+        } @else {
+          <span class="text-white-50">⇅</span>
+        }
+      </span>
     </th>
     <th (click)="sort('firstName')" style="cursor: pointer;">
-      First Name <span>{{ sortColumn === 'firstName' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+      First Name
+      <span class="ms-1">
+        @if (sortColumn === 'firstName') {
+          {{ sortDirection === 'asc' ? '▲' : '▼' }}
+        } @else {
+          <span class="text-white-50">⇅</span>
+        }
+      </span>
     </th>
     <th (click)="sort('lastName')" style="cursor: pointer;">
-      Last Name <span>{{ sortColumn === 'lastName' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+      Last Name
+      <span class="ms-1">
+        @if (sortColumn === 'lastName') {
+          {{ sortDirection === 'asc' ? '▲' : '▼' }}
+        } @else {
+          <span class="text-white-50">⇅</span>
+        }
+      </span>
     </th>
     <th (click)="sort('userType')" style="cursor: pointer;">
-      User Type <span>{{ sortColumn === 'userType' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+      User Type
+      <span class="ms-1">
+        @if (sortColumn === 'userType') {
+          {{ sortDirection === 'asc' ? '▲' : '▼' }}
+        } @else {
+          <span class="text-white-50">⇅</span>
+        }
+      </span>
     </th>
     <th>Actions</th>
   </tr>
@@ -25,10 +53,10 @@
       <tr>
         <td>{{ tempUser.id }}</td>
         <td>
-          <a [routerLink]="['/users/detail', tempUser.id]">{{ tempUser.firstName }}</a>
+          <a [routerLink]="['/users/edit', tempUser.id]" class="text-decoration-none fw-bold">{{ tempUser.firstName }}</a>
         </td>
         <td>{{ tempUser.lastName }}</td>
-        <td>{{ tempUser.userType.type }}</td>
+        <td>{{ tempUser.userType?.type }}</td>
         <td>
           <a [routerLink]="['/users/edit', tempUser.id]" class="btn btn-warning btn-sm me-2">Edit</a>
           <button (click)="tempUser.id && deleteUser(tempUser.id)" class="btn btn-danger btn-sm">Delete</button>
