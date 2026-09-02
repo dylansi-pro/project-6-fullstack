@@ -19,8 +19,12 @@
           <td>{{ tempType.id }}</td>
           <td>{{ tempType.type }}</td>
           <td>
-            <a [routerLink]="['/user-types/edit', tempType.id]" class="btn btn-warning btn-sm me-2">Edit</a>
-            <button (click)="tempType.id && deleteUserType(tempType.id)" class="btn btn-danger btn-sm">Delete</button>
+            @if (tempType.id !== 1) {
+              <a [routerLink]="['/user-types/edit', tempType.id]" class="btn btn-warning btn-sm me-2">Edit</a>
+              <button (click)="tempType.id && deleteUserType(tempType.id)" class="btn btn-danger btn-sm">Delete</button>
+            } @else {
+              <span class="text-muted fst-italic">Protected</span>
+            }
           </td>
         </tr>
       } @empty {
