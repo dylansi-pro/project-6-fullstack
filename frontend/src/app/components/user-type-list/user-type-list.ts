@@ -49,7 +49,7 @@ export class UserTypeListComponent implements OnInit {
   }
 
   deleteUserType(id: number) {
-    if (confirm('Are you sure you want to delete this user-type?')) {
+    if (confirm('Are you sure you want to delete this user type?')) {
       this.userTypeService.deleteUserType(id).subscribe(() => {
         this.listUserTypes();
       });

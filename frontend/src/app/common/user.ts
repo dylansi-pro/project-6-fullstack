@@ -5,6 +5,6 @@ export class User {
     public id?: number,
     public firstName: string = '',
     public lastName: string = '',
-    public userType: UserType = new UserType()
+    public userType: UserType | null = null
   ) {}
 }

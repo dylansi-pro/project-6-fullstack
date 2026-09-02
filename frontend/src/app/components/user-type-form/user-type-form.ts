@@ -13,7 +13,7 @@ import { UserTypeService } from '../../services/user-type';
   styleUrl: './user-type-form.css',
 })
 export class UserTypeFormComponent implements OnInit {
-  userType: UserType = new UserType(null as any, '');
+  userType: UserType = new UserType();
   isEditMode = false;
 
   constructor(
@@ -35,6 +35,11 @@ export class UserTypeFormComponent implements OnInit {
   }
 
   saveUserType() {
+    this.userType.type = this.userType.type.trim();
+    if (!this.userType.type) {
+      return;
+    }
+
     if (this.isEditMode) {
       this.userTypeService.updateUserType(this.userType).subscribe(() => {
         this.router.navigate(['/user-types']);

@@ -15,7 +15,7 @@ import { UserTypeService } from '../../services/user-type';
   styleUrl: './user-form.css',
 })
 export class UserFormComponent implements OnInit {
-  user: User = new User(undefined, '', '', new UserType(null as any, ''));
+  user: User = new User();
   userTypes: UserType[] = [];
   isEditMode = false;
 
