@@ -1,0 +1,13 @@
+<div class="container mt-4">
+  <h2>{{ isEditMode ? 'Edit User Type' : 'Add User Type' }}</h2>
+
+  <form (ngSubmit)="saveUserType()">
+    <div class="mb-3">
+      <label class="form-label">Type Name</label>
+      <input type="text" class="form-control" [(ngModel)]="userType.type" name="typeName" required>
+    </div>
+
+    <button type="submit" class="btn btn-success me-2">Save</button>
+    <a routerLink="/user-types" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>

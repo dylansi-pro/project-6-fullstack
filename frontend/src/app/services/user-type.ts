@@ -27,6 +27,10 @@ class UserTypeService {
   deleteUserType(id: number): Observable<any> {
     return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
+
+  updateUserType(userType: UserType): Observable<UserType> {
+    return this.httpClient.put<UserType>(`${this.baseUrl}/${userType.id}`, userType);
+  }
 }
 
 export { UserTypeService };

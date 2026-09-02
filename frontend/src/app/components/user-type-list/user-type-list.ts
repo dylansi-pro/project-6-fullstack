@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserType } from '../../common/user-type';
 import { UserTypeService } from '../../services/user-type';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-user-type-list',
   standalone: true,
-  imports: [RouterLink],
+  imports: [CommonModule, RouterLink],
   templateUrl: './user-type-list.html',
   styleUrl: './user-type-list.css'
 })
@@ -14,7 +15,7 @@ export class UserTypeListComponent implements OnInit {
 
   userTypes: UserType[] = [];
 
-  constructor(private userTypeService: UserTypeService) { }
+  constructor(private userTypeService: UserTypeService, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.listUserTypes();
@@ -23,7 +24,9 @@ export class UserTypeListComponent implements OnInit {
   listUserTypes() {
     this.userTypeService.getUserTypes().subscribe(
       data => {
+        console.log("Données reçues du backend :", data);
         this.userTypes = data;
+        this.cdr.detectChanges();
       }
     );
   }
