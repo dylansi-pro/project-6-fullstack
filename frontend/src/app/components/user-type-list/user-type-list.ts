@@ -27,7 +27,6 @@ export class UserTypeListComponent implements OnInit {
 
   listUserTypes() {
     this.userTypeService.getUserTypes().subscribe((data) => {
-      console.log('Données reçues du backend :', data);
       this.userTypes = data;
       this.cdr.detectChanges();
     });
