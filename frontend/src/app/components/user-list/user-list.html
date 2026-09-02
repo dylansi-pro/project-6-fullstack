@@ -5,10 +5,18 @@
 <table class="table table-striped table-bordered">
   <thead class="table-dark">
   <tr>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>User Type</th>
+    <th (click)="sort('id')" style="cursor: pointer;">
+      ID <span>{{ sortColumn === 'id' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+    </th>
+    <th (click)="sort('firstName')" style="cursor: pointer;">
+      First Name <span>{{ sortColumn === 'firstName' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+    </th>
+    <th (click)="sort('lastName')" style="cursor: pointer;">
+      Last Name <span>{{ sortColumn === 'lastName' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+    </th>
+    <th (click)="sort('userType')" style="cursor: pointer;">
+      User Type <span>{{ sortColumn === 'userType' ? (sortDirection === 'asc' ? '▲' : '▼') : '⇅' }}</span>
+    </th>
     <th>Actions</th>
   </tr>
   </thead>
