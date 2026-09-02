@@ -1,16 +1,7 @@
-import { TestBed } from '@angular/core/testing';
+import { User } from '../common/user';
 
-import { User } from './user';
-
-describe('User', () => {
-  let service: User;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(User);
-  });
-
+describe('User model', () => {
   it('should be created', () => {
-    expect(service).toBeTruthy();
+    expect(new User()).toBeTruthy();
   });
 });
